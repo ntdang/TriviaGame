@@ -1,3 +1,7 @@
 body {
   background-image: url("../images/90s.jpg");
 }
+
+.jumbotron {
+  margin-top: 190px;
+}
