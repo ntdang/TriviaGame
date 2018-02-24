@@ -60,8 +60,8 @@ $('.document').ready(function () {
   function newGame() {
     wins = 0;
     losses = 0;
-    currentQuestion = '';
     userChoice = '';
+    currentQuestion = '';
     correctAnswer = '';
     incorrectAnswer = '';
     unanswered = '';
@@ -78,7 +78,7 @@ $('.document').ready(function () {
       'data-index': i
     });
     choices.addClass('thisChoice');
-    $('.answerList').append(choices);
+    $("#answer-choices").append(choices);
   }
 
 
