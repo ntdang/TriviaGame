@@ -15,7 +15,7 @@ $('.document').ready(function () {
 
 
   // Questions Object
-  var questions = [{
+  var allQuestions = [{
     question: "Mr. Feeny was the teacher in which popular TV show?",
     answerList: ["Fresh Prince of Bel-Air", "Beverly Hills 90210", "Boy Meets Word", "Saved by the Bell"],
     answer: 2
@@ -65,22 +65,14 @@ $('.document').ready(function () {
     correctAnswer = '';
     incorrectAnswer = '';
     unanswered = '';
+    newQuestion();
   };
 
 
   // New question function
-  $('#current-question').html('Question #' + (currentQuestion + 1) + '/' + questions.length);
-  $('.question').html('<h2>' + triviaQuestions[currentQuestion].question + '</h2>');
-  for (var i = 0; i < 4; i++) {
-    var choices = $('<div>');
-    choices.text(questions[currentQuestion].answerList[i]);
-    choices.attr({
-      'data-index': i
-    });
-    choices.addClass('thisChoice');
-    $("#answer-choices").append(choices);
-  }
-
+  function newQuestion() {
+   
+  };
 
 
   // Time remaining function
