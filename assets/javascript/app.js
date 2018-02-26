@@ -9,29 +9,31 @@ $('.document').ready(function () {
   var timer = 30;
   var intervalId;
 
-  var images = ["../images/Feeny.jpg", "../images/TommyPickles.png", "../images/Jagged.jpg", "../images/Legends.jpg", "../images/SMK.jpg"];
-
-
   var triviaQuestions = [{
     question: "Mr. Feeny was the teacher in which popular TV show?",
-    answerList: ["Fresh Prince of Bel-Air", "Beverly Hills 90210", "Boy Meets Word", "Saved by the Bell"],
-    answer: 2,
+    answerList: ["Fresh Prince of Bel-Air", "Beverly Hills 90210", "Boy Meets World", "Saved by the Bell"],
+    answer: "Boy Meets World",
+    image: "../images/Feeny.jpg",
   }, {
     question: "What was Tommy's last name in Rugrats?",
     answerList: ["Finster", "Pickles", "Chuckie", "DeVille"],
-    answer: 1,
+    answer: "Pickles",
+    image: "../images/TommyPickles.png",
   }, {
     question: "Jagged Little Pill is the album by which singer?",
     answerList: ["Alanis Morissette", "Whitney Houston", "Mariah Carey", "Courtney Love"],
-    answer: 0,
+    answer: "Alanis Morissette",
+    image: "../images/Jagged.jpg",
   }, {
     question: "The gameshow where teams competed to find lost treasures in a Mayan temple was called..?",
     answerList: ["Secrets of a Lost Temple", "The Mayan Maze", "What Would You Do?", "Legends of the Hidden Temple"],
-    answer: 3,
+    answer: "Legends of the Hidden Temple",
+    image: "../images/Legends.jpg",
   }, {
     question: "Which of the following was NOT a character in Super Mario Kart?",
     answerList: ["Luigi", "Peach", "Crash", "Toad"],
-    answer: 2,
+    answer: "Crash",
+    image: "../images/SMK.jpg",
   }];
 
 
@@ -83,8 +85,38 @@ $('.document').ready(function () {
     loadQuestion: function () {
       $("#current-question").html("<h2>" + triviaQuestions[this.currentQuestion].question + "</h2>");
       for (var i = 0; i < triviaQuestions[this.currentQuestion].answerList.length; i++) {
-        $("#answer-choices").append("<button class='answer-button' id='button'" + "data-name'" + triviaQuestions[this.currentQuestion].answerList[i] + "'>" + triviaQuestions[this.currentQuestion].answerList[i] + "</button>");
+        $("#answer-choices").append("<button id='answer-button'" + "data-name='" + triviaQuestions[this.currentQuestion].answerList[i] + "'>" + triviaQuestions[this.currentQuestion].answerList[i] + "</button>");
       }
+    },
+
+    madeChoice: function (a) {
+      clearInterval(intervalId);
+
+        if ($(a.target).data("name") === triviaQuestions[this.currentQuestion].answer) {
+          this.answerIsCorrect();
+        } else {
+          this.answerIsIncorrect();
+        }
+      },
+
+    answerIsCorrect: function () {
+      clearInterval(intervalId);
+      game.correct++;
+      $("#content").html(messages.correct);
+      $("#content").append("img src='" + triviaQuestions[game.currentQuestion].image + "' />");
+
+      if (game.currentQuestion === triviaQuestions.length - 1) {
+        setTimeout(game.results, 3000);
+      } else {
+        setTimeout(game.nextQuestion, 3000);
+      }
+    },  
+  
+
+    nextQuestion: function () {
+      game.timeRemaining = timer;
+      game.currentQuestion++;
+      game.loadQuestion();
     },
 
     // Reset function
