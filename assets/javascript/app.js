@@ -1,19 +1,17 @@
 $('.document').ready(function () {
 
-      // Declare variables for questions, correctAnswer, incorrectAnswer, unanswered, wins, losses, timer, images array, userChoice, message
+      // Declare variables for questions, correctAnswers, incorrectAnswers, unanswered, timer, images array, userChoice, message
 
-      var wins = 0;
-      var losses = 0;
-      var currentQuestion = '';
       var userChoice = '';
-      var correctAnswer = '';
-      var incorrectAnswer = '';
-      var unanswered = '';
+      var correctAnswers = 0;
+      var incorrectAnswers = 0;
+      var unanswered = 0;
+      var timer = 30;
 
       var images = ["../images/Feeny.jpg", "../images/TommyPickles.png", "../images/Jagged.jpg", "../images/Legends.jpg", "../images/SMK.jpg"];
 
 
-      var triviaGame = {
+      var triviaQuestions = {
         q1: {
           question: "Mr. Feeny was the teacher in which popular TV show?",
           answerList: ["Fresh Prince of Bel-Air", "Beverly Hills 90210", "Boy Meets Word", "Saved by the Bell"],
@@ -55,20 +53,17 @@ $('.document').ready(function () {
         // On-click functions to start and start-over
         $("#start-game").on("click", function () {
           $(this).hide();
-          newGame();
         });
 
 
 
         // New game function
-        function newGame() {
-          wins = 0;
-          losses = 0;
+        function reset() {
           userChoice = '';
-          currentQuestion = '';
-          correctAnswer = '';
-          incorrectAnswer = '';
-          unanswered = '';
+          correctAnswers = 0;
+          incorrectAnswers = 0;
+          unanswered = 0;
+          timer = 30;
           newQuestion();
         };
 
