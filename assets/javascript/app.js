@@ -48,9 +48,8 @@ $('.document').ready(function () {
   // On-click functions to start and start-over
   $("#start-game").on("click", function () {
     $(this).hide();
-    $("#content").html("<h3>Time Remaining: " + game.timeRemaining + " seconds</h3>");
+    $("#timer").html("<h3>Time Remaining: " + game.timeRemaining + " seconds</h3>");
     game.loadQuestion();
-    game.countDown();
   });
 
   // Game object
@@ -62,18 +61,18 @@ $('.document').ready(function () {
     incorrect: 0,
     unanswered: 0,
 
-    // Time remaining function
+    // Time remaining functions
     countDown: function () {
-      intervalId = (decrement, 1000);
+      intervalId = setInterval(decrement, 1000);
     },
 
     decrement: function () {
-      timer--;
+      game.timeRemaining--;
       $("#timer").html(game.timeRemaining);
 
       if (game.timeRemaining === 0) {
         stop();
-        $("#timer").text("Time's up!");
+        $("#content").text("Time's up!");
       }
     },
 
@@ -87,37 +86,38 @@ $('.document').ready(function () {
       for (var i = 0; i < triviaQuestions[this.currentQuestion].answerList.length; i++) {
         $("#answer-choices").append("<button id='answer-button'" + "data-name='" + triviaQuestions[this.currentQuestion].answerList[i] + "'>" + triviaQuestions[this.currentQuestion].answerList[i] + "</button>");
       }
+
+      game.countDown();
     },
 
-    madeChoice: function (a) {
-      clearInterval(intervalId);
+    // madeChoice: function (a) {
+    //     game.stop();
+    //     if ($(a.target).data("name") === triviaQuestions[this.currentQuestion].answer) {
+    //       this.answerIsCorrect();
+    //     } else {
+    //       this.answerIsIncorrect();
+    //     }
+    //   },
 
-        if ($(a.target).data("name") === triviaQuestions[this.currentQuestion].answer) {
-          this.answerIsCorrect();
-        } else {
-          this.answerIsIncorrect();
-        }
-      },
+    // answerIsCorrect: function () {
+    //   game.stop();
+    //   game.correct++;
+    //   $("#content").html(messages.correct);
+    //   $("#content").append("<img src='" + triviaQuestions[game.currentQuestion].image + "' />");
 
-    answerIsCorrect: function () {
-      clearInterval(intervalId);
-      game.correct++;
-      $("#content").html(messages.correct);
-      $("#content").append("img src='" + triviaQuestions[game.currentQuestion].image + "' />");
+    //   if (game.currentQuestion === triviaQuestions.length - 1) {
+    //     setTimeout(game.results, 3000);
+    //   } else {
+    //     setTimeout(game.nextQuestion, 3000);
+    //   }
+    // },  
 
-      if (game.currentQuestion === triviaQuestions.length - 1) {
-        setTimeout(game.results, 3000);
-      } else {
-        setTimeout(game.nextQuestion, 3000);
-      }
-    },  
-  
 
-    nextQuestion: function () {
-      game.timeRemaining = timer;
-      game.currentQuestion++;
-      game.loadQuestion();
-    },
+    // nextQuestion: function () {
+    //   game.timeRemaining = timer;
+    //   game.currentQuestion++;
+    //   game.loadQuestion();
+    // },
 
     // Reset function
     reset: function () {
@@ -126,28 +126,6 @@ $('.document').ready(function () {
       unanswered: 0;
       timeRemaining: timer;
     },
-
-
-
-
-
-    // Answer page function
-
-
-
-    // Scoreboard function
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   }
