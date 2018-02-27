@@ -6,7 +6,6 @@ $('.document').ready(function () {
   var correct = 0;
   var incorrect = 0;
   var unanswered = 0;
-  var timer = 30;
   var intervalId;
 
   var triviaQuestions = [{
@@ -48,7 +47,7 @@ $('.document').ready(function () {
   // On-click functions to start and start-over
   $("#start-game").on("click", function () {
     $(this).hide();
-    $("#timer").html("<h3>Time Remaining: " + game.timeRemaining + " seconds</h3>");
+    $("#timer").html(game.timer);
     game.loadQuestion();
   });
 
@@ -56,23 +55,20 @@ $('.document').ready(function () {
   var game = {
     triviaQuestions: triviaQuestions,
     currentQuestion: 0,
-    timeRemaining: timer,
+    timer: 30,
     correct: 0,
     incorrect: 0,
     unanswered: 0,
 
     // Time remaining functions
     countDown: function () {
-      intervalId = setInterval(decrement, 1000);
-    },
+      game.timer--;
+      $("#timer").html(game.timer);
 
-    decrement: function () {
-      game.timeRemaining--;
-      $("#timer").html(game.timeRemaining);
-
-      if (game.timeRemaining === 0) {
+      if (game.timer === 0) {
         stop();
         $("#content").text("Time's up!");
+        console.log("Time's Up!");
       }
     },
 
@@ -87,7 +83,8 @@ $('.document').ready(function () {
         $("#answer-choices").append("<button id='answer-button'" + "data-name='" + triviaQuestions[this.currentQuestion].answerList[i] + "'>" + triviaQuestions[this.currentQuestion].answerList[i] + "</button>");
       }
 
-      game.countDown();
+      intervalId = setInterval(game.countDown, 1000);
+
     },
 
     // madeChoice: function (a) {
