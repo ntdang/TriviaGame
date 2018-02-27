@@ -47,7 +47,6 @@ $('.document').ready(function () {
   // On-click functions to start and start-over
   $("#start-game").on("click", function () {
     $(this).hide();
-    $("#timer").html(game.timer);
     game.loadQuestion();
   });
 
@@ -55,7 +54,7 @@ $('.document').ready(function () {
   var game = {
     triviaQuestions: triviaQuestions,
     currentQuestion: 0,
-    timer: 30,
+    timer: 25,
     correct: 0,
     incorrect: 0,
     unanswered: 0,
@@ -84,44 +83,39 @@ $('.document').ready(function () {
       }
 
       intervalId = setInterval(game.countDown, 1000);
+      $("#timer").html("<h4>Time Remaining " + game.timer + " seconds</h4>");
 
     },
 
-    // madeChoice: function (a) {
-    //     game.stop();
-    //     if ($(a.target).data("name") === triviaQuestions[this.currentQuestion].answer) {
-    //       this.answerIsCorrect();
-    //     } else {
-    //       this.answerIsIncorrect();
-    //     }
-    //   },
-
-    // answerIsCorrect: function () {
-    //   game.stop();
-    //   game.correct++;
-    //   $("#content").html(messages.correct);
-    //   $("#content").append("<img src='" + triviaQuestions[game.currentQuestion].image + "' />");
-
-    //   if (game.currentQuestion === triviaQuestions.length - 1) {
-    //     setTimeout(game.results, 3000);
-    //   } else {
-    //     setTimeout(game.nextQuestion, 3000);
-    //   }
-    // },  
+    //answerChoice function
 
 
-    // nextQuestion: function () {
-    //   game.timeRemaining = timer;
-    //   game.currentQuestion++;
-    //   game.loadQuestion();
-    // },
+    
 
+    //correct function
+    
+
+
+
+
+    //incorrrect function
+
+
+
+
+
+    //nextQuestion function
+    
+
+
+
+    
     // Reset function
     reset: function () {
       correct: 0;
       incorrect: 0;
       unanswered: 0;
-      timeRemaining: timer;
+      timer: 25;
     },
 
 
