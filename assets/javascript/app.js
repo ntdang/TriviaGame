@@ -93,13 +93,13 @@ $('.document').ready(function () {
 
     
 
-    //correct function, if the answer is correct do this...
+    //correct function, if the answer is correct, show correct message and image
     
 
 
 
 
-    //incorrrect function, if the answer is incorrect do this...
+    //incorrrect function, if the answer is incorrect, show incorrect message, the correct answer and image
 
 
 
@@ -111,7 +111,7 @@ $('.document').ready(function () {
 
 
 
-    //results page function, shows correct/incorrect/unasnwered
+    //results page function, shows correct/incorrect/unasnwered and start over button
     
 
 
