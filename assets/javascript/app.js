@@ -63,10 +63,10 @@ $('.document').ready(function () {
     // Time remaining functions
     countDown: function () {
       game.timer--;
-      $("#timer").html(game.timer);
+      $("#timer").html("<h4>Time Remaining " + game.timer + " seconds</h4>");
 
       if (game.timer === 0) {
-        stop();
+        game.stop();
         $("#content").text("Time's up!");
         console.log("Time's Up!");
       }
