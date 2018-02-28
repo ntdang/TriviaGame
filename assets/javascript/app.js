@@ -8,6 +8,7 @@ $('.document').ready(function () {
   var unanswered = 0;
   var intervalId;
 
+  // Questions, answers, images object
   var triviaQuestions = [{
     question: "Mr. Feeny was the teacher in which popular TV show?",
     answerList: ["Fresh Prince of Bel-Air", "Beverly Hills 90210", "Boy Meets World", "Saved by the Bell"],
@@ -87,24 +88,30 @@ $('.document').ready(function () {
 
     },
 
-    //answerChoice function
+    //answerChoice function, when user clicks on a choice do this...
 
 
     
 
-    //correct function
+    //correct function, if the answer is correct do this...
     
 
 
 
 
-    //incorrrect function
+    //incorrrect function, if the answer is incorrect do this...
 
 
 
 
 
-    //nextQuestion function
+    //nextQuestion function, loads next question
+
+
+
+
+
+    //results page function, shows correct/incorrect/unasnwered
     
 
 
