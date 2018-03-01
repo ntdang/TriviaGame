@@ -92,7 +92,14 @@ $('.document').ready(function () {
     },
 
     //answerChoice function, when user clicks on a choice do this...
+    //if correct, show correct message and image
+    //else show incorrect message, the correct answer and image
     answerChoice: function () {
+      //clear question page
+      $("#current-question").empty();
+      $("#answer-choices").empty();
+
+
       $("button").on("click", function () {
         var userChoice = ($("button").attr("data-value"));
         if (userChoice === triviaQuestions[this.currentQuestion].answer) {
@@ -103,17 +110,15 @@ $('.document').ready(function () {
       })
     },
 
-    //correct function, if the answer is correct, show correct message and image
+    // //correct and incorrect function, if the answer is correct, show correct message and image
+    // //else show incorrect message, the correct answer and image
+    // answerPage: function () {
+    //   //clear question page
+    //   $("#current-question").empty();
+    //   $("#answer-choices").empty();
 
 
-
-
-
-    //incorrrect function, if the answer is incorrect, show incorrect message, the correct answer and image
-
-
-
-
+    // },
 
     //unanswered functionn, if the question is not answered, show the correct answer and image
     unanswered: function () {
@@ -129,10 +134,16 @@ $('.document').ready(function () {
 
     //nextQuestion function, loads next question
     // nextQuestion: function () {
+    //   //clear answer page
+    //   $("#message").empty();
+    //   $("#correct-answer").empty();
+    //   $("#image-holder").empty();
+
+
     //   setTimeout(game.loadQuestion, 3000);
     //   game.timer = 25;
     //   game.currentQuestion++;
-    //   $("#image-holder, #correct-answer").detach();
+      
     // },
 
 
