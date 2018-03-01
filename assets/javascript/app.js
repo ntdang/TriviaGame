@@ -52,6 +52,15 @@ $('.document').ready(function () {
     game.loadQuestion();
   });
 
+  // $("button").on("click", function () {
+  //   var userChoice = ($(this).attr("data-value"));
+  //   if (userChoice === triviaQuestions[this.currentQuestion].answer) {
+  //     game.stop();
+  //     game.correct++;
+  //     console.log("Correct!");
+  //   }
+  // });
+
   // Game object
   var game = {
     triviaQuestions: triviaQuestions,
@@ -81,7 +90,7 @@ $('.document').ready(function () {
     loadQuestion: function () {
       $("#current-question").html("<h2>" + triviaQuestions[this.currentQuestion].question + "</h2>");
       for (var i = 0; i < triviaQuestions[this.currentQuestion].answerList.length; i++) {
-        $("#answer-choices").append("<button id='answer-button'" + "data-name='" + triviaQuestions[this.currentQuestion].answerList[i] + "'>" + triviaQuestions[this.currentQuestion].answerList[i] + "</button>");
+        $("#answer-choices").append("<button id='answer-button'" + "data-value='" + triviaQuestions[this.currentQuestion].answerList[i] + "'>" + triviaQuestions[this.currentQuestion].answerList[i] + "</button>");
       }
 
       intervalId = setInterval(game.countDown, 1000);
@@ -90,12 +99,19 @@ $('.document').ready(function () {
     },
 
     //answerChoice function, when user clicks on a choice do this...
-
-
-    
+    answerChoice: function () {
+      $("button").on("click", function () {
+        var userChoice = ($(this).attr("data-value"));
+        if (userChoice === triviaQuestions[this.currentQuestion].answer) {
+          game.stop();
+          game.correct++;
+          console.log("Correct!");
+        }
+      })
+    },
 
     //correct function, if the answer is correct, show correct message and image
-    
+
 
 
 
@@ -113,11 +129,11 @@ $('.document').ready(function () {
 
 
     //results page function, shows correct/incorrect/unasnwered and start over button
-    
 
 
 
-    
+
+
     // Reset function
     reset: function () {
       correct: 0;
