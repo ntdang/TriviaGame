@@ -48,6 +48,7 @@ $('.document').ready(function () {
   // On-click functions to start and start-over
   $("#start-game").on("click", function () {
     $(this).hide();
+    $(".display-4").hide();
     game.loadQuestion();
   });
 
@@ -67,7 +68,7 @@ $('.document').ready(function () {
 
       if (game.timer === 0) {
         game.stop();
-        $("#content").text("Time's up!");
+        $("#timer").html("<h4>Time's Up!</h4>");
         console.log("Time's Up!");
       }
     },
