@@ -13,7 +13,7 @@ $('.document').ready(function () {
     question: "Mr. Feeny was the teacher in which popular TV show?",
     answerList: ["Fresh Prince of Bel-Air", "Beverly Hills 90210", "Boy Meets World", "Saved by the Bell"],
     answer: "Boy Meets World",
-    image: "../images/Feeny.jpg",
+    image: "./assets/images/Feeny.jpg",
   }, {
     question: "What was Tommy's last name in Rugrats?",
     answerList: ["Finster", "Pickles", "Chuckie", "DeVille"],
@@ -68,7 +68,9 @@ $('.document').ready(function () {
 
       if (game.timer === 0) {
         game.stop();
-        $("#timer").html("<h4>Time's Up!</h4>");
+        $("#timer").html("<h4>" + messages.timesUp + "</h4>");
+        $("#answer-choices").hide();
+        game.unanswered();
         console.log("Time's Up!");
       }
     },
@@ -108,6 +110,16 @@ $('.document').ready(function () {
 
 
     //incorrrect function, if the answer is incorrect, show incorrect message, the correct answer and image
+
+
+
+
+
+    //unanswered functionn, if the question is not answered, show the correct answer and image
+    unanswered: function () {
+      $("#correct-answer").html("<h4>The correct answer is " + triviaQuestions[this.currentQuestion].answer + "<h4>");
+      $("#image-holder").append("<img src=" + triviaQuestions[this.currentQuestion].image + "/>");
+    },
 
 
 
