@@ -117,8 +117,10 @@ $('.document').ready(function () {
 
     //unanswered functionn, if the question is not answered, show the correct answer and image
     unanswered: function () {
-      $("#correct-answer").html("<h4>The correct answer is " + triviaQuestions[this.currentQuestion].answer + "<h4>");
+      $("#correct-answer").html("<h4>The correct answer is " + triviaQuestions[this.currentQuestion].answer + "!<h4>");
       $("#image-holder").append("<img src='" + triviaQuestions[this.currentQuestion].image + "'/>");
+      game.nextQuestion();
+      
     },
 
 
@@ -126,7 +128,12 @@ $('.document').ready(function () {
 
 
     //nextQuestion function, loads next question
-
+    // nextQuestion: function () {
+    //   setTimeout(game.loadQuestion, 3000);
+    //   game.timer = 25;
+    //   game.currentQuestion++;
+    //   $("#image-holder, #correct-answer").detach();
+    // },
 
 
 
