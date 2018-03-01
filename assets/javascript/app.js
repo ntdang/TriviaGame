@@ -18,22 +18,22 @@ $('.document').ready(function () {
     question: "What was Tommy's last name in Rugrats?",
     answerList: ["Finster", "Pickles", "Chuckie", "DeVille"],
     answer: "Pickles",
-    image: "../images/TommyPickles.png",
+    image: "./assets/images/TommyPickles.png",
   }, {
     question: "Jagged Little Pill is the album by which singer?",
     answerList: ["Alanis Morissette", "Whitney Houston", "Mariah Carey", "Courtney Love"],
     answer: "Alanis Morissette",
-    image: "../images/Jagged.jpg",
+    image: "./assets/images/Jagged.jpg",
   }, {
     question: "The gameshow where teams competed to find lost treasures in a Mayan temple was called..?",
     answerList: ["Secrets of a Lost Temple", "The Mayan Maze", "What Would You Do?", "Legends of the Hidden Temple"],
     answer: "Legends of the Hidden Temple",
-    image: "../images/Legends.jpg",
+    image: "./assets/images/Legends.jpg",
   }, {
     question: "Which of the following was NOT a character in Super Mario Kart?",
     answerList: ["Luigi", "Peach", "Crash", "Toad"],
     answer: "Crash",
-    image: "../images/SMK.jpg",
+    image: "./assets/images/SMK.jpg",
   }];
 
 
@@ -118,7 +118,7 @@ $('.document').ready(function () {
     //unanswered functionn, if the question is not answered, show the correct answer and image
     unanswered: function () {
       $("#correct-answer").html("<h4>The correct answer is " + triviaQuestions[this.currentQuestion].answer + "<h4>");
-      $("#image-holder").append("<img src=" + triviaQuestions[this.currentQuestion].image + "/>");
+      $("#image-holder").append("<img src='" + triviaQuestions[this.currentQuestion].image + "'/>");
     },
 
 
