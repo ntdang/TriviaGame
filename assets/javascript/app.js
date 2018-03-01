@@ -2,7 +2,7 @@ $('.document').ready(function () {
 
   // Declare variables for questions, correctAnswers, incorrectAnswers, unanswered, timer, images array, userChoice, message
 
-  var userChoice = '';
+  // var userChoice = '';
   var correct = 0;
   var incorrect = 0;
   var unanswered = 0;
@@ -52,15 +52,6 @@ $('.document').ready(function () {
     game.loadQuestion();
   });
 
-  // $("button").on("click", function () {
-  //   var userChoice = ($(this).attr("data-value"));
-  //   if (userChoice === triviaQuestions[this.currentQuestion].answer) {
-  //     game.stop();
-  //     game.correct++;
-  //     console.log("Correct!");
-  //   }
-  // });
-
   // Game object
   var game = {
     triviaQuestions: triviaQuestions,
@@ -101,7 +92,7 @@ $('.document').ready(function () {
     //answerChoice function, when user clicks on a choice do this...
     answerChoice: function () {
       $("button").on("click", function () {
-        var userChoice = ($(this).attr("data-value"));
+        var userChoice = ($("button").attr("data-value"));
         if (userChoice === triviaQuestions[this.currentQuestion].answer) {
           game.stop();
           game.correct++;

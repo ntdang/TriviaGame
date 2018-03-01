@@ -5,3 +5,7 @@ body {
 .jumbotron {
   margin-top: 190px;
 }
+
+#answer-button:hover {
+  background-color: magenta;
+}
