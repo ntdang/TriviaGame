@@ -9,32 +9,45 @@ $('.document').ready(function () {
   var intervalId;
 
   // Questions, answers, images object
-  var triviaQuestions = [{
+  
+
+    var q1 = {
     question: "Mr. Feeny was the teacher in which popular TV show?",
     answerList: ["Fresh Prince of Bel-Air", "Beverly Hills 90210", "Boy Meets World", "Saved by the Bell"],
     answer: "Boy Meets World",
-    image: "./assets/images/Feeny.jpg",
-  }, {
+    image: "./assets/images/Feeny.jpg"
+    }
+  
+  var q2 = {
     question: "What was Tommy's last name in Rugrats?",
     answerList: ["Finster", "Pickles", "Chuckie", "DeVille"],
     answer: "Pickles",
-    image: "./assets/images/TommyPickles.png",
-  }, {
+    image: "./assets/images/TommyPickles.png"
+  }
+  
+  var q3 = {
     question: "Jagged Little Pill is the album by which singer?",
     answerList: ["Alanis Morissette", "Whitney Houston", "Mariah Carey", "Courtney Love"],
     answer: "Alanis Morissette",
-    image: "./assets/images/Jagged.jpg",
-  }, {
+    image: "./assets/images/Jagged.jpg"
+  }
+  
+  var q4 = {
     question: "The gameshow where teams competed to find lost treasures in a Mayan temple was called..?",
     answerList: ["Secrets of a Lost Temple", "The Mayan Maze", "What Would You Do?", "Legends of the Hidden Temple"],
     answer: "Legends of the Hidden Temple",
-    image: "./assets/images/Legends.jpg",
-  }, {
+    image: "./assets/images/Legends.jpg"
+  }
+  
+  var q5 = {
     question: "Which of the following was NOT a character in Super Mario Kart?",
     answerList: ["Luigi", "Peach", "Crash", "Toad"],
     answer: "Crash",
-    image: "./assets/images/SMK.jpg",
-  }];
+    image: "./assets/images/SMK.jpg"
+  }
+
+  var triviaQuestions = [q1, q2, q3, q4, q5];
+  var counter = 0;
 
 
   // Messages Object
@@ -52,11 +65,23 @@ $('.document').ready(function () {
     game.loadQuestion();
   });
 
+  $("button").on("click", function () {
+    var userChoice = ($(this).attr("data-value"));
+    if (userChoice === currentQuestion.answer) {
+      console.log(userChoice);
+      // game.stop();
+      // game.correct++;
+      // console.log("Correct!");
+      // answerChoice();
+    }
+  });
+
+
   // Game object
   var game = {
-    triviaQuestions: triviaQuestions,
-    currentQuestion: 0,
-    timer: 20,
+    // triviaQuestions: triviaQuestions,
+    // currentQuestion: triviaQuestions[counter],
+    timer: 3,
     correct: 0,
     incorrect: 0,
     unanswered: 0,
@@ -81,9 +106,11 @@ $('.document').ready(function () {
 
     //loadQuestion function
     loadQuestion: function () {
-      $("#current-question").html("<h2>" + triviaQuestions[this.currentQuestion].question + "</h2>");
-      for (var i = 0; i < triviaQuestions[this.currentQuestion].answerList.length; i++) {
-        $("#answer-choices").append("<button id='answer-button'" + "data-value='" + triviaQuestions[this.currentQuestion].answerList[i] + "'>" + triviaQuestions[this.currentQuestion].answerList[i] + "</button>");
+      currentQuestion = triviaQuestions[counter];
+
+      $("#current-question").html("<h2>" + currentQuestion.question + "</h2>");
+      for (var i = 0; i < currentQuestion.answerList.length; i++) {
+        $("#answer-choices").append("<button id='answer-button'" + "data-value='" + currentQuestion.answerList[i] + "'>" + currentQuestion.answerList[i] + "</button>");
       }
 
       intervalId = setInterval(game.countDown, 1000);
@@ -100,17 +127,18 @@ $('.document').ready(function () {
       $("#answer-choices").empty();
 
 
-      $("button").on("click", function () {
-        var userChoice = ($("button").attr("data-value"));
-        if (userChoice === triviaQuestions[this.currentQuestion].answer) {
-          console.log(userChoice);
-          game.stop();
-          game.correct++;
-          console.log("Correct!");
-        }
-      })
+      // $("button").on("click", function () {
+      //   var userChoice = ($("button").attr("data-value"));
+      //   if (userChoice === triviaQuestions[this.currentQuestion].answer) {
+      //     console.log(this);
+      //     game.stop();
+      //     game.correct++;
+      //     console.log("Correct!");
+      //     answerChoice();
+      //   }
+      // })
     },
-
+  
     // //correct and incorrect function, if the answer is correct, show correct message and image
     // //else show incorrect message, the correct answer and image
     // answerPage: function () {
@@ -123,10 +151,10 @@ $('.document').ready(function () {
 
     //unanswered functionn, if the question is not answered, show the correct answer and image
     unanswered: function () {
-      $("#correct-answer").html("<h4>The correct answer is " + triviaQuestions[this.currentQuestion].answer + "!<h4>");
-      $("#image-holder").append("<img src='" + triviaQuestions[this.currentQuestion].image + "'/>");
-      // game.nextQuestion();
-      
+      $("#correct-answer").html("<h4>The correct answer is " + currentQuestion.answer + "!<h4>");
+      $("#image-holder").html("<img src='" + currentQuestion.image + "'/>");
+      setTimeout(game.nextQuestion, 4000);
+
     },
 
 
@@ -134,18 +162,17 @@ $('.document').ready(function () {
 
 
     //nextQuestion function, loads next question
-    // nextQuestion: function () {
-    //   //clear answer page
-    //   $("#message").empty();
-    //   $("#correct-answer").empty();
-    //   $("#image-holder").empty();
+    nextQuestion: function () {
+      //clear answer page
+      $("#message").empty();
+      $("#correct-answer").empty();
+      $("#image-holder").empty();
 
-
-    //   setTimeout(game.loadQuestion, 3000);
-    //   game.timer = 25;
-    //   game.currentQuestion++;
+      game.timer = 3;
+      counter++;
+      game.loadQuestion();
       
-    // },
+    },
 
 
 
@@ -161,7 +188,7 @@ $('.document').ready(function () {
       correct: 0;
       incorrect: 0;
       unanswered: 0;
-      timer: 20;
+      timer: 3;
     },
 
 

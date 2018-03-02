@@ -9,3 +9,7 @@ body {
 #answer-button:hover {
   background-color: magenta;
 }
+
+img {
+  width: 500px;
+}
