@@ -56,7 +56,7 @@ $('.document').ready(function () {
   var game = {
     triviaQuestions: triviaQuestions,
     currentQuestion: 0,
-    timer: 25,
+    timer: 20,
     correct: 0,
     incorrect: 0,
     unanswered: 0,
@@ -103,6 +103,7 @@ $('.document').ready(function () {
       $("button").on("click", function () {
         var userChoice = ($("button").attr("data-value"));
         if (userChoice === triviaQuestions[this.currentQuestion].answer) {
+          console.log(userChoice);
           game.stop();
           game.correct++;
           console.log("Correct!");
@@ -124,7 +125,7 @@ $('.document').ready(function () {
     unanswered: function () {
       $("#correct-answer").html("<h4>The correct answer is " + triviaQuestions[this.currentQuestion].answer + "!<h4>");
       $("#image-holder").append("<img src='" + triviaQuestions[this.currentQuestion].image + "'/>");
-      game.nextQuestion();
+      // game.nextQuestion();
       
     },
 
@@ -160,7 +161,7 @@ $('.document').ready(function () {
       correct: 0;
       incorrect: 0;
       unanswered: 0;
-      timer: 25;
+      timer: 20;
     },
 
 
