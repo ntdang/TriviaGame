@@ -100,7 +100,6 @@ $('.document').ready(function () {
         $("#timer").html("<h4>" + messages.timesUp + "</h4>");
         $("button").hide();
         game.unanswered();
-        console.log("Time's Up!");
       }
     },
 
@@ -117,8 +116,6 @@ $('.document').ready(function () {
       $("#B").text(currentQuestion.answerList[1]).attr("data-value", currentQuestion.answerList[1]).removeClass("buttons-hidden");
       $("#C").text(currentQuestion.answerList[2]).attr("data-value", currentQuestion.answerList[2]).removeClass("buttons-hidden");
       $("#D").text(currentQuestion.answerList[3]).attr("data-value", currentQuestion.answerList[3]).removeClass("buttons-hidden");
-
-
 
       intervalId = setInterval(game.countDown, 1000);
       game.countDown();
@@ -146,27 +143,14 @@ $('.document').ready(function () {
       setTimeout(game.nextQuestion, 3000);
     },
 
-    // //correct and incorrect function, if the answer is correct, show correct message and image
-    // //else show incorrect message, the correct answer and image
-    // answerPage: function () {
-    //   //clear question page
-    //   $("#current-question").empty();
-    //   $("#answer-choices").empty();
-
-
-    // },
-
     //unanswered functionn, if the question is not answered, show the correct answer and image
     unanswered: function () {
+    unanswered++;
+      console.log(unanswered);
       $("#correct-answer").html("<h4>The correct answer is " + currentQuestion.answer + "!<h4>");
       $("#image-holder").html("<img src='" + currentQuestion.image + "'/>");
       setTimeout(game.nextQuestion, 3000);
-
     },
-
-
-
-
 
     //nextQuestion function, loads next question
     nextQuestion: function () {
