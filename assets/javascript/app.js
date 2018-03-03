@@ -86,7 +86,7 @@ $('.document').ready(function () {
     timer: 4,
     correct: 0,
     incorrect: 0,
-    unanswered: 0,
+    notAnswered: 0,
 
     // Time remaining functions
     countDown: function () {
@@ -164,37 +164,30 @@ $('.document').ready(function () {
       $(".answerBtn").show();
 
       game.timer = 4;
-      counter++;
-      // game.loadQuestion();
-
-      if (counter === 5) {
+      
+      if (counter === triviaQuestions.length - 1) {
         game.results();
       } else {
+        counter++;
         game.loadQuestion();
       }
     },
-
-
-
 
     //results page function, shows correct/incorrect/unasnwered and start over button
     results: function () {
       $("#current-question").empty();
       $(".answerBtn").hide();
-      $("#image-holder").empty();
+      $("#correct-answer").hide();
+      $("#image-holder").hide();
 
       $("#message").html("<h4>" + messages.finished + "</h4>");
 
-      $("#correctTotal").html(game.correct);
-      $("#incorrectTotal").html(game.incorrect);
-      $("#unansweredTotal").html(game.unanswered);
+      $("#correctTotal").html("Correct: " + game.correct);
+      $("#incorrectTotal").html("Incorrect: " + game.incorrect);
+      $("#unansweredTotal").html("Unanswered: " + game.notAnswered);
 
       setTimeout(game.reset, 3000);
-
     },
-
-
-
 
     // Reset function
     reset: function () {
