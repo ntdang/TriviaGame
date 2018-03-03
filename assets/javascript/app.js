@@ -71,11 +71,12 @@ $('.document').ready(function () {
       console.log(userChoice);
       game.stop();
       game.correct++;
-      console.log(game.correct);
+      console.log("Correct is at " + game.correct);
       game.correctChoice();
     } else {
       game.stop();
       game.incorrect++;
+      console.log("Incorrect is at " + game.incorrect);
       game.incorrectChoice();
     }
   });
@@ -110,6 +111,7 @@ $('.document').ready(function () {
     //loadQuestion function
     loadQuestion: function () {
       currentQuestion = triviaQuestions[counter];
+      console.log("Counter is at " + counter);
       $("#current-question").html("<h2>" + currentQuestion.question + "</h2>");
 
       $("#A").text(currentQuestion.answerList[0]).attr("data-value", currentQuestion.answerList[0]).removeClass("buttons-hidden");
@@ -119,37 +121,55 @@ $('.document').ready(function () {
 
       intervalId = setInterval(game.countDown, 1000);
       game.countDown();
+
     },
 
     //if correct, show correct message and image
     correctChoice: function () {
       //clear question page
       $("#current-question").empty();
-      $("#answer-choices").empty();
+      // $("#answer-choices").empty();
       $(".answerBtn").hide();
       $("#message").html("<h4>" + messages.correct + "</h4>");
       $("#image-holder").html("<img src='" + currentQuestion.image + "'/>");
       setTimeout(game.nextQuestion, 3000);
+
+      // if (game.currentQuestion === triviaQuestions[-1]) {
+      //   setTimeout(game.results, 3000);
+      // } else {
+      //   setTimeout(game.nextQuestion, 3000);
+      // }
     },
 
     //if incorrect, show incorrect messae, correct answer and image
     incorrectChoice: function () {
       $("#current-question").empty();
-      $("#answer-choices").empty();
+      // $("#answer-choices").empty();
       $(".answerBtn").hide();
       $("#message").html("<h4>" + messages.incorrect + "</h4>");
       $("#correct-answer").html("<h4> The correct answer is "+ currentQuestion.answer + "!</h4>");
       $("#image-holder").html("<img src='" + currentQuestion.image + "'/>");
       setTimeout(game.nextQuestion, 3000);
+
+      // if (game.currentQuestion === triviaQuestions[-1]) {
+      //   setTimeout(game.results, 3000);
+      // } else {
+      //   setTimeout(game.nextQuestion, 3000);
+      // }
     },
 
     //unanswered functionn, if the question is not answered, show the correct answer and image
     unanswered: function () {
     unanswered++;
-      console.log(unanswered);
+      console.log("Unanswered is at " + unanswered);
+      $("#current-question").empty();
       $("#correct-answer").html("<h4>The correct answer is " + currentQuestion.answer + "!<h4>");
       $("#image-holder").html("<img src='" + currentQuestion.image + "'/>");
       setTimeout(game.nextQuestion, 3000);
+
+      // if (counter === 5) {
+      //   setTimeout(game.results, 3000);
+      // };
     },
 
     //nextQuestion function, loads next question
@@ -162,7 +182,13 @@ $('.document').ready(function () {
 
       game.timer = 4;
       counter++;
-      game.loadQuestion();
+      // game.loadQuestion();
+
+      if (counter === 5) {
+        game.results();
+      } else {
+        game.loadQuestion();
+      }
 
     },
 
@@ -170,7 +196,20 @@ $('.document').ready(function () {
 
 
     //results page function, shows correct/incorrect/unasnwered and start over button
+    results: function () {
+      $("#current-question").empty();
+      $(".answerBtn").hide();
+      $("#image-holder").empty();
 
+      $("#message").html("<h4>" + messages.finished + "</h4>");
+
+      $("#correctTotal").html(game.correct);
+      $("#incorrectTotal").html(game.incorrect);
+      $("#unansweredTotal").html(game.unanswered);
+
+      setTimeout(game.reset, 3000);
+
+    },
 
 
 
