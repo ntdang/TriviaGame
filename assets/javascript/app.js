@@ -63,6 +63,11 @@ $('.document').ready(function () {
     game.loadQuestion();
   });
 
+  $("#start-over").on("click", function () {
+    game.reset();
+    game.loadQuestion();
+  });
+
   $(".answerBtn").click(function () {
     var userChoice = ($(this).attr("data-value"));
     if (userChoice === currentQuestion.answer) {
@@ -185,6 +190,7 @@ $('.document').ready(function () {
       $("#correctTotal").html("Correct: " + game.correct);
       $("#incorrectTotal").html("Incorrect: " + game.incorrect);
       $("#unansweredTotal").html("Unanswered: " + game.notAnswered);
+      $("#start-over").html("<button>Start Over?</button>");
 
       setTimeout(game.reset, 3000);
     },
