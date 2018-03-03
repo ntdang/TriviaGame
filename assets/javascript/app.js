@@ -65,7 +65,7 @@ $('.document').ready(function () {
 
   $("#start-over").on("click", function () {
     game.reset();
-    game.loadQuestion();
+    
   });
 
   $(".answerBtn").click(function () {
@@ -122,6 +122,8 @@ $('.document').ready(function () {
 
       intervalId = setInterval(game.countDown, 1000);
       game.countDown();
+
+      // $("#results").empty();
     },
 
     //if correct
@@ -192,7 +194,7 @@ $('.document').ready(function () {
       $("#unansweredTotal").html("Unanswered: " + game.notAnswered);
       $("#start-over").html("<button>Start Over?</button>");
 
-      setTimeout(game.reset, 3000);
+      // setTimeout(game.reset, 5000);
     },
 
     // Reset function
@@ -201,6 +203,8 @@ $('.document').ready(function () {
       incorrect: 0;
       notAnswered: 0;
       timer: 4;
+
+      game.loadQuestion();
     },
 
 

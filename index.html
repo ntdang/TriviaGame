@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <title>90s Trivia!</title>
 </head>
+
 <body>
   <div class="jumbotron">
     <h1 class="display-4">Totally 90's Dude!</h1>
@@ -16,16 +18,16 @@
 
     <!-- Question Page -->
     <div id="content"></div>
-    
+
     <div id="timer"></div>
 
     <div id="current-question"></div>
 
     <div id="answer-choices"></div>
-      <button type="button" id="A" class="answerBtn buttons-hidden" ></button>
-      <button type="button" id="B" class="answerBtn buttons-hidden"></button>
-      <button type="button" id="C" class="answerBtn buttons-hidden"></button>
-      <button type="button" id="D" class="answerBtn buttons-hidden"></button>
+    <button type="button" id="A" class="answerBtn buttons-hidden"></button>
+    <button type="button" id="B" class="answerBtn buttons-hidden"></button>
+    <button type="button" id="C" class="answerBtn buttons-hidden"></button>
+    <button type="button" id="D" class="answerBtn buttons-hidden"></button>
 
 
 
@@ -37,24 +39,25 @@
     <div id="image-holder"></div>
 
 
-    
+
     <!-- Results Page -->
+    <div id="results">
+      <p id="correctTotal"></p>
 
-    <div id="correctTotal"></div>
+      <p id="incorrectTotal"></p>
 
-    <div id="incorrectTotal"></div>
+      <p id="unansweredTotal"></p>
 
-    <div id="unansweredTotal"></div>
+      <p id="start-over"></p>
+    </div>
 
-    <div id="start-over"></div>
 
-    
 
 
 
     <hr class="my-4">
     <!-- <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
-    
+
   </div>
 
 
@@ -74,6 +77,7 @@
 
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script src="./assets/javascript/app.js"></script>
+  <script src="./assets/javascript/app.js"></script>
 </body>
+
 </html>
