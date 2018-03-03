@@ -164,7 +164,7 @@ $('.document').ready(function () {
       $(".answerBtn").show();
 
       game.timer = 4;
-      
+
       if (counter === triviaQuestions.length - 1) {
         game.results();
       } else {
