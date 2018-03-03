@@ -5,7 +5,7 @@ $('.document').ready(function () {
   // var userChoice = '';
   var correct = 0;
   var incorrect = 0;
-  var unanswered = 0;
+  var notAnswered = 0;
   var intervalId;
 
   // Questions, answers, images objects
@@ -144,8 +144,8 @@ $('.document').ready(function () {
 
     //unanswered function, if the question is not answered, show the correct answer and image
     unanswered: function () {
-      unanswered++;
-      console.log("Unanswered is at " + unanswered);
+      notAnswered++;
+      console.log("Not answered is at " + notAnswered);
       //clear question page
       $("#current-question").empty();
       $(".answerBtn").hide();
