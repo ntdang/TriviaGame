@@ -199,7 +199,7 @@ $('.document').ready(function () {
     reset: function () {
       correct: 0;
       incorrect: 0;
-      unanswered: 0;
+      notAnswered: 0;
       timer: 4;
     },
 
