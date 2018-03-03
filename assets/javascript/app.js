@@ -58,21 +58,25 @@ $('.document').ready(function () {
     finished: "All done! Here's how you did!"
   };
 
-  // On-click functions to start and start-over
+  // On-click functions to start, start-over, and userChoice
   $("#start-game").on("click", function () {
     $(this).hide();
     $(".display-4").hide();
     game.loadQuestion();
   });
 
-  $("button").on("click", function () {
+  $(".answerBtn").click(function () {
     var userChoice = ($(this).attr("data-value"));
     if (userChoice === currentQuestion.answer) {
       console.log(userChoice);
-      // game.stop();
-      // game.correct++;
-      // console.log("Correct!");
-      // answerChoice();
+      game.stop();
+      game.correct++;
+      console.log(game.correct);
+      game.correctChoice();
+    } else {
+      game.stop();
+      game.incorrect++;
+      game.incorrectChoice();
     }
   });
 
@@ -94,7 +98,7 @@ $('.document').ready(function () {
       if (game.timer === 0) {
         game.stop();
         $("#timer").html("<h4>" + messages.timesUp + "</h4>");
-        $("#answer-choices").hide();
+        $("button").hide();
         game.unanswered();
         console.log("Time's Up!");
       }
@@ -107,35 +111,39 @@ $('.document').ready(function () {
     //loadQuestion function
     loadQuestion: function () {
       currentQuestion = triviaQuestions[counter];
-
       $("#current-question").html("<h2>" + currentQuestion.question + "</h2>");
-      for (var i = 0; i < currentQuestion.answerList.length; i++) {
-        $("#answer-choices").append("<button id='answer-button'" + "data-value='" + currentQuestion.answerList[i] + "'>" + currentQuestion.answerList[i] + "</button>");
-      }
+
+      $("#A").text(currentQuestion.answerList[0]).attr("data-value", currentQuestion.answerList[0]).removeClass("buttons-hidden");
+      $("#B").text(currentQuestion.answerList[1]).attr("data-value", currentQuestion.answerList[1]).removeClass("buttons-hidden");
+      $("#C").text(currentQuestion.answerList[2]).attr("data-value", currentQuestion.answerList[2]).removeClass("buttons-hidden");
+      $("#D").text(currentQuestion.answerList[3]).attr("data-value", currentQuestion.answerList[3]).removeClass("buttons-hidden");
+
+
 
       intervalId = setInterval(game.countDown, 1000);
       game.countDown();
     },
 
-    //answerChoice function, when user clicks on a choice do this...
     //if correct, show correct message and image
-    //else show incorrect message, the correct answer and image
-    answerChoice: function () {
+    correctChoice: function () {
       //clear question page
       $("#current-question").empty();
       $("#answer-choices").empty();
+      $(".answerBtn").hide();
+      $("#message").html("<h4>" + messages.correct + "</h4>");
+      $("#image-holder").html("<img src='" + currentQuestion.image + "'/>");
+      setTimeout(game.nextQuestion, 3000);
+    },
 
-
-      //   $("button").on("click", function () {
-      //     userChoice = ($(this).attr("data-value"));
-      //     if (userChoice === currentQuestion.answer) {
-      //       console.log(this);
-      //       // game.stop();
-      //       // game.correct++;
-      //       // console.log("Correct!");
-      //       // answerChoice();
-      //     }
-      //   })
+    //if incorrect, show incorrect messae, correct answer and image
+    incorrectChoice: function () {
+      $("#current-question").empty();
+      $("#answer-choices").empty();
+      $(".answerBtn").hide();
+      $("#message").html("<h4>" + messages.incorrect + "</h4>");
+      $("#correct-answer").html("<h4> The correct answer is "+ currentQuestion.answer + "!</h4>");
+      $("#image-holder").html("<img src='" + currentQuestion.image + "'/>");
+      setTimeout(game.nextQuestion, 3000);
     },
 
     // //correct and incorrect function, if the answer is correct, show correct message and image
@@ -166,6 +174,7 @@ $('.document').ready(function () {
       $("#message").empty();
       $("#correct-answer").empty();
       $("#image-holder").empty();
+      $(".answerBtn").show();
 
       game.timer = 4;
       counter++;
