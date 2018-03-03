@@ -8,9 +8,7 @@ $('.document').ready(function () {
   var unanswered = 0;
   var intervalId;
 
-  // Questions, answers, images object
-
-
+  // Questions, answers, images objects
   var q1 = {
     question: "Mr. Feeny was the teacher in which popular TV show?",
     answerList: ["Fresh Prince of Bel-Air", "Beverly Hills 90210", "Boy Meets World", "Saved by the Bell"],
@@ -50,7 +48,7 @@ $('.document').ready(function () {
   var counter = 0;
 
 
-  // Messages Object
+  // Messages object
   var messages = {
     correct: "You got it dude!",
     incorrect: "No way Jose!",
@@ -85,8 +83,6 @@ $('.document').ready(function () {
 
   // Game object
   var game = {
-    // triviaQuestions: triviaQuestions,
-    // currentQuestion: triviaQuestions[counter],
     timer: 4,
     correct: 0,
     incorrect: 0,
@@ -100,7 +96,6 @@ $('.document').ready(function () {
       if (game.timer === 0) {
         game.stop();
         $("#timer").html("<h4>" + messages.timesUp + "</h4>");
-        $("button").hide();
         game.unanswered();
       }
     },
@@ -122,53 +117,42 @@ $('.document').ready(function () {
 
       intervalId = setInterval(game.countDown, 1000);
       game.countDown();
-
     },
 
-    //if correct, show correct message and image
+    //if correct
     correctChoice: function () {
       //clear question page
       $("#current-question").empty();
       $(".answerBtn").hide();
+      //show correct message and image
       $("#message").html("<h4>" + messages.correct + "</h4>");
       $("#image-holder").html("<img src='" + currentQuestion.image + "'/>");
       setTimeout(game.nextQuestion, 3000);
-
-      // if (game.currentQuestion === triviaQuestions[-1]) {
-      //   setTimeout(game.results, 3000);
-      // } else {
-      //   setTimeout(game.nextQuestion, 3000);
-      // }
     },
 
-    //if incorrect, show incorrect messae, correct answer and image
+    //if incorrect
     incorrectChoice: function () {
+      //clear question page
       $("#current-question").empty();
       $(".answerBtn").hide();
+      //show incorrect messae, correct answer, and image
       $("#message").html("<h4>" + messages.incorrect + "</h4>");
       $("#correct-answer").html("<h4> The correct answer is " + currentQuestion.answer + "!</h4>");
       $("#image-holder").html("<img src='" + currentQuestion.image + "'/>");
       setTimeout(game.nextQuestion, 3000);
-
-      // if (game.currentQuestion === triviaQuestions[-1]) {
-      //   setTimeout(game.results, 3000);
-      // } else {
-      //   setTimeout(game.nextQuestion, 3000);
-      // }
     },
 
-    //unanswered functionn, if the question is not answered, show the correct answer and image
+    //unanswered function, if the question is not answered, show the correct answer and image
     unanswered: function () {
       unanswered++;
       console.log("Unanswered is at " + unanswered);
+      //clear question page
       $("#current-question").empty();
+      $(".answerBtn").hide();
+      //show correct answer message and image
       $("#correct-answer").html("<h4>The correct answer is " + currentQuestion.answer + "!<h4>");
       $("#image-holder").html("<img src='" + currentQuestion.image + "'/>");
       setTimeout(game.nextQuestion, 3000);
-
-      // if (counter === 5) {
-      //   setTimeout(game.results, 3000);
-      // };
     },
 
     //nextQuestion function, loads next question
@@ -188,7 +172,6 @@ $('.document').ready(function () {
       } else {
         game.loadQuestion();
       }
-
     },
 
 
