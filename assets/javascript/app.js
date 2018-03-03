@@ -68,12 +68,13 @@ $('.document').ready(function () {
   $(".answerBtn").click(function () {
     var userChoice = ($(this).attr("data-value"));
     if (userChoice === currentQuestion.answer) {
-      console.log(userChoice);
+      console.log("User chose " + userChoice);
       game.stop();
       game.correct++;
       console.log("Correct is at " + game.correct);
       game.correctChoice();
     } else {
+      console.log("User chose " + userChoice);
       game.stop();
       game.incorrect++;
       console.log("Incorrect is at " + game.incorrect);
@@ -111,7 +112,7 @@ $('.document').ready(function () {
     //loadQuestion function
     loadQuestion: function () {
       currentQuestion = triviaQuestions[counter];
-      console.log("Counter is at " + counter);
+      console.log("Question counter is at " + counter);
       $("#current-question").html("<h2>" + currentQuestion.question + "</h2>");
 
       $("#A").text(currentQuestion.answerList[0]).attr("data-value", currentQuestion.answerList[0]).removeClass("buttons-hidden");
@@ -128,7 +129,6 @@ $('.document').ready(function () {
     correctChoice: function () {
       //clear question page
       $("#current-question").empty();
-      // $("#answer-choices").empty();
       $(".answerBtn").hide();
       $("#message").html("<h4>" + messages.correct + "</h4>");
       $("#image-holder").html("<img src='" + currentQuestion.image + "'/>");
@@ -144,10 +144,9 @@ $('.document').ready(function () {
     //if incorrect, show incorrect messae, correct answer and image
     incorrectChoice: function () {
       $("#current-question").empty();
-      // $("#answer-choices").empty();
       $(".answerBtn").hide();
       $("#message").html("<h4>" + messages.incorrect + "</h4>");
-      $("#correct-answer").html("<h4> The correct answer is "+ currentQuestion.answer + "!</h4>");
+      $("#correct-answer").html("<h4> The correct answer is " + currentQuestion.answer + "!</h4>");
       $("#image-holder").html("<img src='" + currentQuestion.image + "'/>");
       setTimeout(game.nextQuestion, 3000);
 
@@ -160,7 +159,7 @@ $('.document').ready(function () {
 
     //unanswered functionn, if the question is not answered, show the correct answer and image
     unanswered: function () {
-    unanswered++;
+      unanswered++;
       console.log("Unanswered is at " + unanswered);
       $("#current-question").empty();
       $("#correct-answer").html("<h4>The correct answer is " + currentQuestion.answer + "!<h4>");
