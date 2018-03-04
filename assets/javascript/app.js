@@ -53,7 +53,6 @@ $('.document').ready(function () {
     correct: "You got it dude!",
     incorrect: "No way Jose!",
     timesUp: "Time's up!",
-    finished: "All done! Here's how you did!"
   };
 
   // On-click functions to start, start-over, and userChoice
@@ -115,6 +114,10 @@ $('.document').ready(function () {
       console.log("Question counter is at " + counter);
       $("#current-question").html("<h2>" + currentQuestion.question + "</h2>");
 
+      $("#timer").show();
+      $("#current-question").show();
+      $(".answerBtn").show();
+
       $("#A").text(currentQuestion.answerList[0]).attr("data-value", currentQuestion.answerList[0]).removeClass("buttons-hidden");
       $("#B").text(currentQuestion.answerList[1]).attr("data-value", currentQuestion.answerList[1]).removeClass("buttons-hidden");
       $("#C").text(currentQuestion.answerList[2]).attr("data-value", currentQuestion.answerList[2]).removeClass("buttons-hidden");
@@ -122,8 +125,6 @@ $('.document').ready(function () {
 
       intervalId = setInterval(game.countDown, 1000);
       game.countDown();
-
-      // $("#results").empty();
     },
 
     //if correct
@@ -131,6 +132,7 @@ $('.document').ready(function () {
       //clear question page
       $("#current-question").empty();
       $(".answerBtn").hide();
+      $("#image-holder").show();
       //show correct message and image
       $("#message").html("<h4>" + messages.correct + "</h4>");
       $("#image-holder").html("<img src='" + currentQuestion.image + "'/>");
@@ -142,6 +144,7 @@ $('.document').ready(function () {
       //clear question page
       $("#current-question").empty();
       $(".answerBtn").hide();
+      $("#image-holder").show();
       //show incorrect messae, correct answer, and image
       $("#message").html("<h4>" + messages.incorrect + "</h4>");
       $("#correct-answer").html("<h4> The correct answer is " + currentQuestion.answer + "!</h4>");
@@ -156,6 +159,7 @@ $('.document').ready(function () {
       //clear question page
       $("#current-question").empty();
       $(".answerBtn").hide();
+      $("#image-holder").show();
       //show correct answer message and image
       $("#correct-answer").html("<h4>The correct answer is " + currentQuestion.answer + "!<h4>");
       $("#image-holder").html("<img src='" + currentQuestion.image + "'/>");
@@ -182,28 +186,28 @@ $('.document').ready(function () {
 
     //results page function, shows correct/incorrect/unasnwered and start over button
     results: function () {
-      $("#current-question").empty();
+      $("#current-question").hide();
       $(".answerBtn").hide();
       $("#correct-answer").hide();
       $("#image-holder").hide();
-
-      $("#message").html("<h4>" + messages.finished + "</h4>");
+      $("#results").show();
 
       $("#correctTotal").html("Correct: " + game.correct);
       $("#incorrectTotal").html("Incorrect: " + game.incorrect);
       $("#unansweredTotal").html("Unanswered: " + game.notAnswered);
+      console.log(game.notAnswered);
       $("#start-over").html("<button>Start Over?</button>");
-
-      // setTimeout(game.reset, 5000);
     },
 
     // Reset function
     reset: function () {
-      correct: 0;
-      incorrect: 0;
-      notAnswered: 0;
-      timer: 4;
-
+      game.correct = 0;
+      game.incorrect = 0;
+      game.notAnswered = 0;
+      game.timer = 4;
+      counter = 0;
+      clearInterval(intervalId);
+      $("#results").hide();
       game.loadQuestion();
     },
 
