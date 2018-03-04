@@ -2,10 +2,6 @@ $('.document').ready(function () {
 
   // Declare variables for questions, correctAnswers, incorrectAnswers, unanswered, timer, images array, userChoice, message
 
-  // var userChoice = '';
-  var correct = 0;
-  var incorrect = 0;
-  var notAnswered = 0;
   var intervalId;
 
   // Questions, answers, images objects
@@ -64,7 +60,7 @@ $('.document').ready(function () {
 
   $("#start-over").on("click", function () {
     game.reset();
-    
+
   });
 
   $(".answerBtn").click(function () {
@@ -99,7 +95,9 @@ $('.document').ready(function () {
 
       if (game.timer === 0) {
         game.stop();
-        $("#timer").html("<h4>" + messages.timesUp + "</h4>");
+        game.notAnswered++;
+        console.log("Not answered is at " + game.notAnswered);
+        // $("#timer").html("<h4>" + messages.timesUp + "</h4>");
         game.unanswered();
       }
     },
@@ -133,6 +131,7 @@ $('.document').ready(function () {
       $("#current-question").empty();
       $(".answerBtn").hide();
       $("#image-holder").show();
+      $("#message").show();
       //show correct message and image
       $("#message").html("<h4>" + messages.correct + "</h4>");
       $("#image-holder").html("<img src='" + currentQuestion.image + "'/>");
@@ -145,6 +144,7 @@ $('.document').ready(function () {
       $("#current-question").empty();
       $(".answerBtn").hide();
       $("#image-holder").show();
+      $("#correct-answer").show();
       //show incorrect messae, correct answer, and image
       $("#message").html("<h4>" + messages.incorrect + "</h4>");
       $("#correct-answer").html("<h4> The correct answer is " + currentQuestion.answer + "!</h4>");
@@ -152,14 +152,18 @@ $('.document').ready(function () {
       setTimeout(game.nextQuestion, 3000);
     },
 
-    //unanswered function, if the question is not answered, show the correct answer and image
+    //if unanswered
     unanswered: function () {
-      notAnswered++;
-      console.log("Not answered is at " + notAnswered);
+      // notAnswered++;
+      // console.log("Not answered is at " + notAnswered);
       //clear question page
-      $("#current-question").empty();
+      $("#message").html("<h4>" + messages.timesUp + "</h4>");
+      $("#current-question").hide();
       $(".answerBtn").hide();
+      $("#timer").hide();
       $("#image-holder").show();
+      $("#message").show();
+      $("#correct-answer").show();
       //show correct answer message and image
       $("#correct-answer").html("<h4>The correct answer is " + currentQuestion.answer + "!<h4>");
       $("#image-holder").html("<img src='" + currentQuestion.image + "'/>");
@@ -195,7 +199,6 @@ $('.document').ready(function () {
       $("#correctTotal").html("Correct: " + game.correct);
       $("#incorrectTotal").html("Incorrect: " + game.incorrect);
       $("#unansweredTotal").html("Unanswered: " + game.notAnswered);
-      console.log(game.notAnswered);
       $("#start-over").html("<button>Start Over?</button>");
     },
 
@@ -210,7 +213,6 @@ $('.document').ready(function () {
       $("#results").hide();
       game.loadQuestion();
     },
-
 
   }
 
