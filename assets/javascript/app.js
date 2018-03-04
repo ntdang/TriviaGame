@@ -83,7 +83,7 @@ $('.document').ready(function () {
 
   // Game object
   var game = {
-    timer: 4,
+    timer: 16,
     correct: 0,
     incorrect: 0,
     notAnswered: 0,
@@ -97,7 +97,6 @@ $('.document').ready(function () {
         game.stop();
         game.notAnswered++;
         console.log("Not answered is at " + game.notAnswered);
-        // $("#timer").html("<h4>" + messages.timesUp + "</h4>");
         game.unanswered();
       }
     },
@@ -115,6 +114,7 @@ $('.document').ready(function () {
       $("#timer").show();
       $("#current-question").show();
       $(".answerBtn").show();
+      $(".display-4").hide();
 
       $("#A").text(currentQuestion.answerList[0]).attr("data-value", currentQuestion.answerList[0]).removeClass("buttons-hidden");
       $("#B").text(currentQuestion.answerList[1]).attr("data-value", currentQuestion.answerList[1]).removeClass("buttons-hidden");
@@ -128,8 +128,9 @@ $('.document').ready(function () {
     //if correct
     correctChoice: function () {
       //clear question page
-      $("#current-question").empty();
+      $("#current-question").hide();
       $(".answerBtn").hide();
+      $("#timer").hide();
       $("#image-holder").show();
       $("#message").show();
       //show correct message and image
@@ -141,8 +142,9 @@ $('.document').ready(function () {
     //if incorrect
     incorrectChoice: function () {
       //clear question page
-      $("#current-question").empty();
+      $("#current-question").hide();
       $(".answerBtn").hide();
+      $("#timer").hide();
       $("#image-holder").show();
       $("#correct-answer").show();
       //show incorrect messae, correct answer, and image
@@ -154,8 +156,6 @@ $('.document').ready(function () {
 
     //if unanswered
     unanswered: function () {
-      // notAnswered++;
-      // console.log("Not answered is at " + notAnswered);
       //clear question page
       $("#message").html("<h4>" + messages.timesUp + "</h4>");
       $("#current-question").hide();
@@ -178,7 +178,7 @@ $('.document').ready(function () {
       $("#image-holder").empty();
       $(".answerBtn").show();
 
-      game.timer = 4;
+      game.timer = 16;
 
       if (counter === triviaQuestions.length - 1) {
         game.results();
@@ -194,11 +194,12 @@ $('.document').ready(function () {
       $(".answerBtn").hide();
       $("#correct-answer").hide();
       $("#image-holder").hide();
+      $(".display-4").show();
       $("#results").show();
 
-      $("#correctTotal").html("Correct: " + game.correct);
-      $("#incorrectTotal").html("Incorrect: " + game.incorrect);
-      $("#unansweredTotal").html("Unanswered: " + game.notAnswered);
+      $("#correctTotal").html("<h5>Correct: </h5>" + game.correct);
+      $("#incorrectTotal").html("<h5>Incorrect: </h5>" + game.incorrect);
+      $("#unansweredTotal").html("<h5>Unanswered: </h5>" + game.notAnswered);
       $("#start-over").html("<button>Start Over?</button>");
     },
 
@@ -207,7 +208,7 @@ $('.document').ready(function () {
       game.correct = 0;
       game.incorrect = 0;
       game.notAnswered = 0;
-      game.timer = 4;
+      game.timer = 16;
       counter = 0;
       clearInterval(intervalId);
       $("#results").hide();

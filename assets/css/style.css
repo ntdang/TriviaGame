@@ -1,19 +1,34 @@
 body {
   background-image: url("../images/90s.jpg");
+  text-align: center;
+}
+
+#content {
+  font-family: 'Mina', sans-serif;
+}
+
+.btn-primary {
+  background-color: magenta;
 }
 
 .jumbotron {
   margin-top: 190px;
 }
 
-#answer-button:hover {
+.answerBtn:hover {
   background-color: magenta;
 }
 
 img {
-  width: 500px;
+  width: 400px;
 }
 
 .buttons-hidden {
   display: none;
+}
+
+.display-4 {
+  font-family: 'Monoton', cursive;
+  font-size: 65px;
+  color: yellowgreen;
 }
