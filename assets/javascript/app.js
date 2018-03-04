@@ -9,35 +9,35 @@ $('.document').ready(function () {
     question: "Mr. Feeny was the teacher in which popular TV show?",
     answerList: ["Fresh Prince of Bel-Air", "Beverly Hills 90210", "Boy Meets World", "Saved by the Bell"],
     answer: "Boy Meets World",
-    image: "./assets/images/Feeny.jpg"
+    image: "./assets/images/BMW.gif"
   }
 
   var q2 = {
     question: "What was Tommy's last name in Rugrats?",
     answerList: ["Finster", "Pickles", "Chuckie", "DeVille"],
     answer: "Pickles",
-    image: "./assets/images/TommyPickles.png"
+    image: "./assets/images/Tommy.gif"
   }
 
   var q3 = {
     question: "Jagged Little Pill is the album by which singer?",
     answerList: ["Alanis Morissette", "Whitney Houston", "Mariah Carey", "Courtney Love"],
     answer: "Alanis Morissette",
-    image: "./assets/images/Jagged.jpg"
+    image: "./assets/images/Alanis.gif"
   }
 
   var q4 = {
     question: "The gameshow where teams competed to find lost treasures in a Mayan temple was called..?",
     answerList: ["Secrets of a Lost Temple", "The Mayan Maze", "What Would You Do?", "Legends of the Hidden Temple"],
     answer: "Legends of the Hidden Temple",
-    image: "./assets/images/Legends.jpg"
+    image: "./assets/images/Legends.gif"
   }
 
   var q5 = {
     question: "Which of the following was NOT a character in Super Mario Kart?",
     answerList: ["Luigi", "Peach", "Crash", "Toad"],
     answer: "Crash",
-    image: "./assets/images/SMK.jpg"
+    image: "./assets/images/MarioKart.gif"
   }
 
   var triviaQuestions = [q1, q2, q3, q4, q5];
