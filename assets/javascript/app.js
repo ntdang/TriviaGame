@@ -83,15 +83,16 @@ $('.document').ready(function () {
 
   // Game object
   var game = {
-    timer: 16,
+    timer: 15,
     correct: 0,
     incorrect: 0,
     notAnswered: 0,
 
     // Time remaining functions
     countDown: function () {
-      game.timer--;
       $("#timer").html("<h4>Time Remaining: " + game.timer + " seconds</h4>");
+      game.timer--;
+
 
       if (game.timer === 0) {
         game.stop();
@@ -178,7 +179,7 @@ $('.document').ready(function () {
       $("#image-holder").empty();
       $(".answerBtn").show();
 
-      game.timer = 16;
+      game.timer = 15;
 
       if (counter === triviaQuestions.length - 1) {
         game.results();
@@ -208,7 +209,7 @@ $('.document').ready(function () {
       game.correct = 0;
       game.incorrect = 0;
       game.notAnswered = 0;
-      game.timer = 16;
+      game.timer = 15;
       counter = 0;
       clearInterval(intervalId);
       $("#results").hide();
